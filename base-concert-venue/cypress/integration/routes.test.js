@@ -15,3 +15,8 @@ it('displays correct heading when navigating to bands route', () => {
 // it('resets the db', () => {
 //   cy.task('db:reset');
 // });
+
+it('displays correct band name for band route that existed at build time', () => {
+  cy.task('db:reset').visit('/bands/1');
+  cy.findByRole('heading', { name: /SHamrock Pete/i }).should('exist');
+});
