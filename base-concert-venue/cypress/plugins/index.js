@@ -16,6 +16,7 @@
 const { resetDB } = require('../../__tests__/__mocks__/db/utils/reset-db');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { addBand } = require('../../lib/features/bands/queries');
+const { addReservation } = require('../../lib/features/reservations/queries');
 /**
  * @type {Cypress.PluginConfig}
  */
@@ -23,14 +24,11 @@ const { addBand } = require('../../lib/features/bands/queries');
 module.exports = (on, config) => {
   // eslint-disable-next-line no-param-reassign
   config.env.REVALIDATION_SECRET = process.env.REVALIDATION_SECRET;
-  console.log(
-    'REVALIDATION_SECRET:',
-    process.env.REVALIDATION_SECRET,
-    config.env.REVALIDATION_SECRET
-  );
   on('task', {
     'db:reset': () => resetDB().then(() => null),
     addBand: (newBand) => addBand(newBand).then(() => null),
+    addReservation: (newReservation) =>
+      addReservation(newReservation).then(() => null),
   });
   return config;
 };

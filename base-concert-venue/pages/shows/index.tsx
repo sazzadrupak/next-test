@@ -50,7 +50,7 @@ export default function Shows({
   const router = useRouter();
 
   const { data: shows, isValidating } = useSWR<Array<Show>>(
-    "/api/shows",
+    "/api/shows", // if the test fails, use a simple string key instead of URL-like key (e.g., "shows-data")
     getShowsViaAPI,
     {
       fallbackData: isrShows,
